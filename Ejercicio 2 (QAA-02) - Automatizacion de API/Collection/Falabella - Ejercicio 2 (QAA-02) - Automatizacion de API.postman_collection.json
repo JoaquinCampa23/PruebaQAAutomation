@@ -1,0 +1,231 @@
+{
+	"info": {
+		"_postman_id": "753f506e-dfe0-4e3a-9c74-120d0d959cfc",
+		"name": "Falabella - Ejercicio 2 (QAA-02) - Automatizacion de API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "tests",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"\t/*\r",
+							"\t * Constructor description\r",
+							"\t * @author: joaquin.campa\r",
+							"\t * @date: 19/Mar/2021\r",
+							"\t */\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"///test endpoints//\r",
+							"\r",
+							"if (pm.iterationData.get(\"Endpoint-QA\") === \"posts\") {\r",
+							"const schema = {\r",
+							"    \"type\" : \"array\",\r",
+							"    \"properties\":{\r",
+							"        \"userId\":{\r",
+							"            \"type\" : \"integer\"\r",
+							"        },\r",
+							"        \"id\":{\r",
+							"            \"type\": \"integer\"\r",
+							"        },\r",
+							"         \"title\":{\r",
+							"            \"type\": \"string\"\r",
+							"        },\r",
+							"         \"body\":{\r",
+							"            \"type\": \"string\"\r",
+							"        }\r",
+							"    },\r",
+							"    \"required\":[\r",
+							"        \"userId\",\r",
+							"        \"id\",\r",
+							"        \"title\",\r",
+							"        \"body\"\r",
+							"        ]\r",
+							"};\r",
+							"pm.test(\"Response posts contains: userId,id,title,body\",()=>{\r",
+							"    pm.response.to.have.jsonSchema(schema);\r",
+							"    \r",
+							"});\r",
+							"\r",
+							"\r",
+							"    pm.test(\"Endpoint contain 100 posts\", function () {\r",
+							"     var jsonData = pm.response.json();\r",
+							"     pm.expect(jsonData[99].id).to.eql(100);\r",
+							"    });\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"//fin de primer if === posts//\r",
+							"}\r",
+							"else if (pm.iterationData.get(\"Endpoint-QA\") === \"comments\") {\r",
+							"    pm.test(\"Search email\", function () {\r",
+							"        pm.expect(pm.response.text()).to.include(\"Preston_Hudson@blaise.tv\");\r",
+							"    });\r",
+							"  \r",
+							"    pm.test(\"Endpoint contain 500 comments\", function () {\r",
+							"     var jsonData = pm.response.json();\r",
+							"     pm.expect(jsonData[499].id).to.eql(500);\r",
+							"    });\r",
+							"\r",
+							"\r",
+							"}\r",
+							"else if (pm.iterationData.get(\"Endpoint-QA\") === \"albums\") {\r",
+							"const schema = {\r",
+							"    \"type\" : \"array\",\r",
+							"    \"properties\":{\r",
+							"        \"userId\":{\r",
+							"            \"type\" : \"integer\"\r",
+							"        },\r",
+							"        \"id\":{\r",
+							"            \"type\": \"integer\"\r",
+							"        },\r",
+							"         \"title\":{\r",
+							"            \"type\": \"string\"\r",
+							"        }\r",
+							"    },\r",
+							"    \"required\":[\r",
+							"        \"userId\",\r",
+							"        \"id\",\r",
+							"        \"title\"\r",
+							"        ]\r",
+							"};\r",
+							"pm.test(\"Response albums contains: userId,id,title\",()=>{\r",
+							"    pm.response.to.have.jsonSchema(schema);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"    pm.test(\"Endpoint contain 100 albums\", function () {\r",
+							"     var jsonData = pm.response.json();\r",
+							"     pm.expect(jsonData[99].id).to.eql(100);\r",
+							"    });\r",
+							"\r",
+							"\r",
+							"}\r",
+							"\r",
+							"else if (pm.iterationData.get(\"Endpoint-QA\") === \"photos\") {\r",
+							"    pm.test(\"Endpoint contain 5000 photos\", function () {\r",
+							"     var jsonData = pm.response.json();\r",
+							"     pm.expect(jsonData[4999].id).to.eql(5000);\r",
+							"    });\r",
+							"\r",
+							"\r",
+							"}\r",
+							"else if (pm.iterationData.get(\"Endpoint-QA\") === \"todos\") {\r",
+							"    pm.test(\"Endpoint contain 200 todos\", function () {\r",
+							"     var jsonData = pm.response.json();\r",
+							"     pm.expect(jsonData[199].id).to.eql(200);\r",
+							"    });\r",
+							"\r",
+							"\r",
+							"\r",
+							"}\r",
+							"else if (pm.iterationData.get(\"Endpoint-QA\") === \"users\") {\r",
+							"    pm.test(\"Endpoint contain 10 users\", function () {\r",
+							"     var jsonData = pm.response.json();\r",
+							"     pm.expect(jsonData[9].id).to.eql(10);\r",
+							"    });\r",
+							"\r",
+							"\r",
+							"}\r",
+							"\r",
+							" else{\r",
+							"\r",
+							"    console.log(\"No se encontraron test cases para este endpoint: \"+pm.iterationData.get(\"Endpoint-QA\") ) \r",
+							" }"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Url}}{{Endpoint-QA}}",
+					"host": [
+						"{{Url}}{{Endpoint-QA}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"\t/*",
+					"\t * Constructor description",
+					"\t * @author: joaquin.campa",
+					"\t * @date: 19/Mar/2021",
+					"\t */",
+					"",
+					"pm.test(\"Endpoint: \"+ pm.iterationData.get(\"Endpoint-QA\") + \" status code is 200\", function () {",
+					"",
+					" ",
+					"        pm.response.to.have.status(200);",
+					"   ",
+					"});",
+					"",
+					"//Validate Response//",
+					"pm.test(\"Response is JSON\", function () {",
+					"     pm.response.to.be.ok;",
+					"     pm.response.to.be.withBody;",
+					"     pm.response.to.be.json;",
+					"   ",
+					"});",
+					"",
+					"",
+					"//Validacion de headers//",
+					"pm.test(\"Check headers\", () => {",
+					"  pm.expect(pm.response.headers.get('Content-Type')).to.be.oneOf(['application/json;','application/json; charset=utf-8','application/json']);",
+					"  pm.expect(pm.response.headers.get('X-Powered-By')).to.eql('Express');",
+					"  pm.expect(pm.response.headers.get('X-Content-Type-Options')).to.eql('nosniff');",
+					"",
+					"});",
+					" // time ejecucion endpoints",
+					"pm.test(\"Response time is less than 200ms\", function () {",
+					"    pm.expect(pm.response.responseTime).to.be.below(200);",
+					"});",
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "Endpoint",
+			"value": "posts",
+			"type": "string"
+		}
+	]
+}

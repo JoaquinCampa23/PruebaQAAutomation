@@ -1,0 +1,28 @@
+Para el TC 001 se utilizo :Prueba basada en listas de comprobación
+¿Porque? Es una técnica de prueba basada en la experiencia, En estas pruebas revisamos la calidad del software
+ basándonos en una serie de puntos a cumplir que tenemos enumerados en una lista. 
+Diseñaremos, implementaremos y ejecutaremos las pruebas para cubrir las condiciones 
+de esas lista de comprobación. Son un buen punto de partida para evaluar nuestro objeto de prueba.
+
+
+
+Para el TC 002 se utilizo: Prueba de caja negra
+¿Porque? Nos enfocamos en la entrada de informacion que recibe y las respuestas que produce.
+ademas son pruebas que se diseñan para verificar el correcto 
+comportamiento de uno a varios actores para una acción de un caso de uso en concreto.
+
+
+Puntos a tener en cuenta para probar una api
+
+- Tener el collection para ejecutar o si no se tiene se debe tener toda la estructura para crear el request
+metodo
+url
+endpoint
+headers
+request
+
+Ademas de tener el git y nombre de tabla de BD
+Saber el alcance de las pruebas y los escenarios posibles
+
+
+
